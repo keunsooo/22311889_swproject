@@ -1,5 +1,8 @@
 [Conceptualization_[22311889_강은수].pdf](https://github.com/user-attachments/files/26283667/Conceptualization_.22311889_.pdf)
 
+22311889 강은수
+https://github.com/keunsooo/22311889_swproject
+
 --------------
 
 1. Conceptualization
