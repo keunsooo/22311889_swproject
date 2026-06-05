@@ -50,7 +50,7 @@ Revision date Version # Description Author
 
 ## 2. Class Diagram
 
-<img이미지주소/>
+<img width="1890" height="1856" alt="Image" src="https://github.com/user-attachments/assets/2992e5b1-7a02-475c-aa60-22e02f0e72f4" />
 
 | 클래스 | 주요 속성 | 주요 메서드 | 설명 |
 | --- | --- | --- | --- |
@@ -74,37 +74,38 @@ Revision date Version # Description Author
 
 ### 3.1 회원가입 (User Registration)
 
->이미지
+<img width="1517" height="1232" alt="Image" src="https://github.com/user-attachments/assets/aeedce63-36b7-49cc-b20c-b1a8f179b26a" />
 
 사용자가 회원가입 폼(사용자명, 이메일, 비밀번호)을 작성한다. 프론트엔드는 `POST /auth/register` 요청을 AuthService로 전송합니다. AuthService는 bcrypt로 비밀번호 해시를 생성하고 DB에 신규 사용자를 저장한다. 성공 시 JWT 토큰이 반환되고 캘린더 메인 페이지로 리다이렉트된다.
 
 ### 3.2 로그인 (User Login)
 
->이미지
+<img width="1517" height="1232" alt="Image" src="https://github.com/user-attachments/assets/58e0d6cb-5c4f-4e33-a5fa-47e8240c68a2" />
+
 
 사용자가 이메일과 비밀번호를 입력힌다. AuthService는 DB에서 해당 이메일의 사용자를 조회하고 bcrypt로 비밀번호 해시를 검증한다. 검증 성공 시 서명된 JWT 토큰이 반환되고 localStorage에 저장된다. 실패 시 오류 메시지가 표시된다.
 
 ### 3.3 캘린더 일정 추가 (Add Calendar Event)
 
->이미지
+<img width="1667" height="1337" alt="Image" src="https://github.com/user-attachments/assets/90716a23-4a24-4524-8844-9be3ed97c27e" />
 
 사용자가 캘린더의 날짜를 클릭하면 EventModal이 열린다. 제목, 시간 범위, 색상 등 이벤트 정보를 입력하고 저장하면 `POST /events`가 JWT와 함께 호출된다. CalendarService는 토큰을 검증하고 DB에 이벤트를 삽입한다. 반환된 데이터로 캘린더 뷰가 즉시 업데이트된다.
 
 ### 3.4 투두리스트 관리 (Todo List Management)
 
->이미지
+<img width="1517" height="1967" alt="Image" src="https://github.com/user-attachments/assets/c6d18cd6-747f-45b8-b47a-6bcd83a8a6ee" />
 
 사용자가 특정 날짜의 투두 패널을 연다. 기존 투두 항목을 불러오고, 새 항목 추가 시 `POST /todos`가 호출되어 DB에 저장된다. 완료 체크박스 클릭 시 `PATCH /todos/{id}`로 isCompleted 상태가 토글된다.
 
 ### 3.5 일기 및 이미지 스티커 (Diary Entry with Image Sticker)
 
->이미지
+<img width="1667" height="1862" alt="Image" src="https://github.com/user-attachments/assets/d7cda5aa-659f-4942-99a3-0bc1253f2f16" />
 
 사용자가 날짜별 일기 페이지를 연다. 텍스트 작성, 이미지 첨부(StorageService 업로드), 스티커 배치(X/Y 좌표 저장)를 모두 수행한 뒤 `PUT /diary/{id}`로 전체 일기를 저장한다.
 
 ### 3.6 테마 색상 변경 (Theme Color Change)
 
->이미지
+<img width="1517" height="1547" alt="Image" src="https://github.com/user-attachments/assets/99cfda3e-9e9a-4eef-a21b-d3263ab8106d" />
 
 사용자가 설정 페이지에서 테마 목록을 불러온다. 원하는 테마를 선택하면 `PUT /user/theme`로 사용자 프로필의 테마 ID가 업데이트된다. 반환된 새 테마 색상이 React의 전역 테마 Context에 즉시 적용된다.
 
@@ -116,13 +117,13 @@ Revision date Version # Description Author
 
 ### 4.1 클라이언트 상태 머신
 
->이미지
+<img width="2117" height="2717" alt="Image" src="https://github.com/user-attachments/assets/24d5bfcb-7c91-4f07-b118-ff256f3bd53f" />
 
 클라이언트는 비로그인 상태에서 시작하며 로그인/회원가입 옵션만 표시한다. 인증 성공 후 캘린더 메인(CalendarMain)(중앙 허브)으로 전환된다. 기능 영역(점선 박스)에서 EventModal(일정 생성/편집), TodoPanel(투두 관리), DiaryPage(일기 작성), ThemeSettings(테마 설정) 4가지 기능 상태로 이동할 수 있다. DiaryPage 내에서는 StickerCanvas 서브 상태가 스티커 배치를 처리한다. 로그아웃 시 로그아웃 확인 상태를 거쳐 비로그인 상태로 돌아가거나 앱을 종료한다.
 
 ### 4.2 서버 상태 머신
 
->이미지
+<img width="2117" height="2717" alt="Image" src="https://github.com/user-attachments/assets/a0c5b8da-26c9-413f-b714-0b6acc46260d" />
 
 서버는 Idle(대기) 상태에서 시작한다. 인증 요청 수신 시 Authenticating(인증 중) 상태로 전환된다. 인증 성공 시 Authorized(인가됨)으로, 실패 시 Error 상태(401/400 반환)로 이동 후 Idle 로 복귀한다. Authorized 상태에서는 요청 유형에 따라 ProcessingEvent, ProcessingTodo, ProcessingDiary, UploadingImage 처리 상태로 분기되며, 각 처리 상태는 DB/스토리지 작업 후 결과를 반환하고 Authorized로 복귀합니다. 세션 만료 또는 로그아웃 시 Idle로 돌아간다.
 
